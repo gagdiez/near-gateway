@@ -6,7 +6,7 @@ import walletConnectModule from '@web3-onboard/walletconnect';
 import { useEffect, useState } from 'react';
 import { singletonHook } from 'react-singleton-hook';
 
-import icon from '@/assets/images/near_social_icon.svg';
+import icon from '@/assets/images/near-icon.svg';
 
 const web3onboardKey = 'web3-onboard:connectedWallets';
 

@@ -2,10 +2,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { NearconBanner } from '@/components/banners/NearconBanner';
 import { Button } from '@/components/lib/Button';
 import { useBosComponents } from '@/hooks/useBosComponents';
-import { useSignInRedirect } from '@/hooks/useSignInRedirect';
 import { useAuthStore } from '@/stores/auth';
 
 import SearchIcon from '../icons/search.svg';
@@ -64,29 +62,6 @@ const InnerWrapper = styled.div`
   */
 `;
 
-const SearchButton = styled.button`
-  all: unset;
-  padding-left: 44px;
-  margin: 0;
-  border: 1px solid var(--sand6);
-  border-radius: 50px;
-  min-height: 48px;
-  height: 48px;
-  color: #868682;
-  display: flex;
-  align-items: center;
-  background-repeat: no-repeat;
-  background-position: 12px 12px;
-  background-image: url(${SearchIcon.src});
-  transition: all 200ms;
-
-  :focus {
-    background-color: white;
-    border: 1px solid #604cc8;
-    box-shadow: 0px 0px 0px 4px #cbc7f4;
-  }
-`;
-
 const Actions = styled.div`
   display: flex;
   flex-direction: column;
@@ -94,39 +69,18 @@ const Actions = styled.div`
 `;
 
 export function Menu(props: Props) {
-  const router = useRouter();
   const signedIn = useAuthStore((store) => store.signedIn);
-  const components = useBosComponents();
-  const { requestAuthentication } = useSignInRedirect();
-
-  function handleSignIn() {
-    props.onCloseMenu();
-    requestAuthentication();
-  }
-
-  function handleCreateAccount() {
-    props.onCloseMenu();
-    requestAuthentication(true);
-  }
-
-  function search() {
-    props.onCloseMenu();
-    router.push(`/${components.search.indexPage}`);
-  }
+  const requestSignInWithWallet = useAuthStore((store) => store.requestSignInWithWallet);
 
   return (
     <Wrapper visible={props.isVisible}>
       <InnerWrapper>
-        <NearconBanner inline />
-
-        <SearchButton onClick={search}>Search NEAR</SearchButton>
 
         <AccordionMenu onCloseMenu={props.onCloseMenu} />
 
         {!signedIn && (
           <Actions>
-            <Button label="Create Account" variant="primary" size="large" onClick={handleCreateAccount} />
-            <Button label="Sign in" variant="secondary" size="large" onClick={handleSignIn} />
+            <Button label="Sign in" variant="secondary" size="large" onClick={requestSignInWithWallet} />
           </Actions>
         )}
       </InnerWrapper>

@@ -2,10 +2,6 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { useCurrentComponentStore } from '@/stores/current-component';
-import { recordMouseEnter } from '@/utils/analytics';
-
-import { CurrentComponent } from '../CurrentComponent';
 import { navigationCategories } from '../navigation-categories';
 
 const Wrapper = styled.div`
@@ -127,12 +123,6 @@ const Section = styled.div`
   min-width: 200px;
 `;
 
-const CurrentComponentSection = styled.div`
-  padding: 0 24px;
-  margin: 5px 0;
-  border-left: 1px solid var(--sand4);
-`;
-
 const SectionTitle = styled.p`
   font: var(--text-xs);
   color: var(--sand10);
@@ -143,7 +133,6 @@ const SectionTitle = styled.p`
 `;
 
 export const MainNavigationMenu = () => {
-  const currentComponentSrc = useCurrentComponentStore((store) => store.src);
 
   return (
     <Wrapper>
@@ -153,7 +142,7 @@ export const MainNavigationMenu = () => {
             .filter((category) => category.visible === 'all' || category.visible === 'desktop')
             .map((category) => (
               <NavItem key={category.title}>
-                <NavTrigger onMouseEnter={recordMouseEnter}>{category.title}</NavTrigger>
+                <NavTrigger >{category.title}</NavTrigger>
 
                 <NavContent>
                   <Container>
@@ -170,12 +159,6 @@ export const MainNavigationMenu = () => {
                         ))}
                       </Section>
                     ))}
-
-                    {currentComponentSrc && category.title === 'Develop' && (
-                      <CurrentComponentSection>
-                        <CurrentComponent />
-                      </CurrentComponentSection>
-                    )}
                   </Container>
                 </NavContent>
               </NavItem>

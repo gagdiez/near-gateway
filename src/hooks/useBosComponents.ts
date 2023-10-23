@@ -1,4 +1,4 @@
-import { componentsByNetworkId } from '@/data/bos-components';
+import { componentsByNetworkId } from '@/data/components';
 import { networkId } from '@/utils/config';
 
 export function useBosComponents() {

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { useCurrentComponentStore } from '@/stores/current-component';
 
-import { CurrentComponent } from '../CurrentComponent';
 import { navigationCategories } from '../navigation-categories';
 
 type Props = {
@@ -91,15 +90,6 @@ const Section = styled.div`
   }
 `;
 
-const CurrentComponentSection = styled.div`
-  padding: 24px;
-  border-top: 1px solid var(--sand6);
-
-  > div {
-    max-width: 350px;
-  }
-`;
-
 const SectionTitle = styled.p`
   font: var(--text-xs);
   color: var(--sand10);
@@ -111,7 +101,6 @@ const SectionTitle = styled.p`
 `;
 
 export const AccordionMenu = (props: Props) => {
-  const currentComponentSrc = useCurrentComponentStore((store) => store.src);
 
   return (
     <Wrapper>
@@ -145,11 +134,6 @@ export const AccordionMenu = (props: Props) => {
                   </Section>
                 ))}
 
-                {currentComponentSrc && category.title === 'Develop' && (
-                  <CurrentComponentSection>
-                    <CurrentComponent />
-                  </CurrentComponentSection>
-                )}
               </AccordionContent>
             </AccordionItem>
           ))}

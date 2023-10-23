@@ -4,11 +4,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button } from '@/components/lib/Button';
-import { useSignInRedirect } from '@/hooks/useSignInRedirect';
 import { useAuthStore } from '@/stores/auth';
 
 import NearIcon from '../icons/near-icon.svg';
-import { NotificationButton } from '../NotificationButton';
 import { UserDropdownMenu } from '../UserDropdownMenu';
 import { Menu } from './Menu';
 
@@ -85,11 +83,7 @@ const Actions = styled.div`
 export const MobileNavigation = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
   const signedIn = useAuthStore((store) => store.signedIn);
-  const { requestAuthentication } = useSignInRedirect();
-
-  const handleCreateAccount = () => {
-    requestAuthentication(true);
-  };
+  const requestSignInWithWallet = useAuthStore((store) => store.requestSignInWithWallet);
 
   const closeMenu = () => {
     setMenuIsVisible(false);
@@ -119,11 +113,10 @@ export const MobileNavigation = () => {
         <Actions onClick={closeMenu}>
           {signedIn ? (
             <>
-              <NotificationButton mobileView />
               <UserDropdownMenu />
             </>
           ) : (
-            <Button label="Create Account" variant="primary" onClick={handleCreateAccount} />
+            <Button label="Login" variant="primary" onClick={requestSignInWithWallet} />
           )}
         </Actions>
 

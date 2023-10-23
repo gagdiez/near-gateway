@@ -191,7 +191,7 @@ export const UserDropdownMenu = () => {
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <VmComponent
-            src={components.profileImage}
+            src={components.UI.profileImage}
             props={{
               accountId,
               className: 'd-inline-block',
@@ -199,7 +199,7 @@ export const UserDropdownMenu = () => {
           />
           <div className="profile-info">
             <div className="profile-name">
-              <VmComponent src={components.profileName} />
+              <VmComponent src={components.UI.profileName} />
             </div>
             <div className="profile-username">{accountId}</div>
           </div>
@@ -209,7 +209,7 @@ export const UserDropdownMenu = () => {
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={-5}>
           <DropdownMenu.Item
             className="DropdownMenuItem"
-            onClick={() => router.push(`/${components.profilePage}?accountId=${accountId}`)}
+            onClick={() => router.push(`/${components.UI.profilePage}?accountId=${accountId}`)}
           >
             <i className="ph-duotone ph-user"></i>
             Profile
