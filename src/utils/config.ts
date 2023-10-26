@@ -45,7 +45,5 @@ export const networks: Record<NetworkId, Network> = {
   },
 };
 
-const NETWORK = 'mainnet';
-export const networkId: NetworkId = (process.env.NEXT_PUBLIC_NETWORK_ID as NetworkId) || NETWORK;
+export const networkId: NetworkId = 'mainnet';
 export const network = networks[networkId];
-export const signInContractId = networkId === 'testnet' ? 'v1.social08.testnet' : 'social.near';

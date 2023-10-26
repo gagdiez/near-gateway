@@ -22,6 +22,14 @@ export const navigationCategories = [
             title: 'Hello Social',
             url: '/hello-social',
           },
+          {
+            title: 'DIG UI Library',
+            url: '/dig',
+          },
+          {
+            title: 'NUI UI Library',
+            url: '/nui',
+          },
         ],
       },
     ],

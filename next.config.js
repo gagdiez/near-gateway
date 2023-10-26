@@ -6,6 +6,10 @@ const nextConfig = {
     return [
     ];
   },
+  env: {
+    // adding CONTRACT_NAME as a public env variable
+    NEXT_PUBLIC_CONTRACT_NAME: process.env.CONTRACT_NAME,
+  }
 };
 
 module.exports = nextConfig;

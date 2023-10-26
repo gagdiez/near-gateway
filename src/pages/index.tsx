@@ -37,10 +37,10 @@ const HomePage: NextPageWithLayout = () => {
 
       <h5 className="mt-5"> Configure your Gateway </h5>
       <ul>
-        <li> Select the network (mainnet|testnet) in the <span className="text-italic"> ./src/utils/config.ts </span> </li>
-        <li> Modify the navigation menu in <span className="text-italic">./src/components/navigation/navigation-categories.ts</span> </li>
-        <li> Create a pages by creating files in <span className="text-italic">./src/pages</span> </li>
-        <li> Define general components in <span className="text-italic">./src/data/components.ts</span> to use them across pages </li>
+        <li> Select the network <code>mainnet</code> or <code>testnet</code> in the <code> ./src/utils/config.ts </code> </li>
+        <li> Modify the navigation menu in <code>./src/components/navigation/navigation-categories.ts</code> </li>
+        <li> Create new pages by adding files in <code>./src/pages</code> </li>
+        <li> Define general components in <code>./src/data/components.ts</code> to use them across pages </li>
       </ul>
     </div>
   );

@@ -2,7 +2,6 @@ import type { NetworkId } from '@/utils/types';
 
 type Components = {
   helloExample: string
-  homePage: string
   UI: {
     profileImage: string,
     profileName: string,
@@ -12,27 +11,13 @@ type Components = {
   social:{
     compose: string,
     feed: string
-  }
+  },
+  DIG: string,
+  NUI: string
 };
 
 export const componentsByNetworkId: Record<NetworkId, Components | undefined> = {
   testnet: {
-    homePage: 'gateway.testnet/widget/Home',
-    helloExample: 'gagdiez.near/widget/HelloNear',
-    UI: {
-      profileImage: 'eugenethedream/widget/ProfileImage',
-      profileName: 'eugenethedream/widget/ProfileName',
-      profilePage: 'discom.testnet/widget/ProfilePage',
-    },
-    lidoExample: 'zavodil.near/widget/Lido',
-    social:{
-      compose: "mob.near/widget/MainPage.N.Compose",
-      feed: "mob.near/widget/MainPage.N.Feed"
-    }
-  },
-
-  mainnet: {
-    homePage: 'gateway.near/widget/Home',
     helloExample: 'gagdiez.near/widget/HelloNear',
     UI: {
       profileImage: 'mob.near/widget/ProfileImage',
@@ -43,6 +28,23 @@ export const componentsByNetworkId: Record<NetworkId, Components | undefined> = 
     social:{
       compose: "mob.near/widget/MainPage.N.Compose",
       feed: "mob.near/widget/MainPage.N.Feed"
-    }
+    },
+    DIG: "near/widget/DIG.OverviewPage",
+    NUI: "nearui.near/widget/index",
+  },
+  mainnet: {
+    helloExample: 'gagdiez.near/widget/HelloNear',
+    UI: {
+      profileImage: 'mob.near/widget/ProfileImage',
+      profileName: 'patrick.near/widget/ProfileName',
+      profilePage: 'near/widget/ProfilePage',
+    },
+    lidoExample: 'zavodil.near/widget/Lido',
+    social:{
+      compose: "mob.near/widget/MainPage.N.Compose",
+      feed: "mob.near/widget/MainPage.N.Feed"
+    },
+    DIG: "near/widget/DIG.OverviewPage",
+    NUI: "nearui.near/widget/index",
   },
 };

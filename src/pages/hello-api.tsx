@@ -5,6 +5,8 @@ import { useAuthStore } from '@/stores/auth';
 import { useVmStore } from '@/stores/vm';
 import type { NextPageWithLayout } from '@/utils/types';
 
+// Contract that the app will interact with
+const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_NAME || '';
 
 const callMethod = async (near: any, contractId: string, methodName: string, args: any = {}, gas = '30000000000000', deposit = 0) => {
   const selector = await near.selector
@@ -41,7 +43,6 @@ const ExampleAPIPage: NextPageWithLayout = () => {
   const near = useVmStore(store => store.near);
   const [greeting, setStateGreeting] = useState('')
 
-  const CONTRACT = 'hello.near-examples.near';
 
   useEffect(() => {
     if (near) {
@@ -53,7 +54,7 @@ const ExampleAPIPage: NextPageWithLayout = () => {
   }, [near]);
 
   const setGreeting = async () => {
-    callMethod(near, 'hello.near-examples.near', 'set_greeting', { greeting });
+    callMethod(near, CONTRACT, 'set_greeting', { greeting });
   };
 
   // Define components
@@ -70,11 +71,11 @@ const ExampleAPIPage: NextPageWithLayout = () => {
   );
 
   const notLoggedInWarning = (
-    <p className="text-center py-2"> Login to change the greeting </p>
+    <p className="text-center py-2"> Please login to change the greeting </p>
   );
 
   return <>
-    <p className="text-center mt-4 p-1 text-danger"> This example makes calls directly from the Gateway app using the `near wallet` object </p>
+    <p className="text-center mt-3 p-3"> This example makes calls directly from the Gateway app using the <code>near-api-js</code> and <code>wallet-selector</code> libraries </p>
 
     <div className="container border mt-2 border-warning p-3">
 
@@ -83,8 +84,15 @@ const ExampleAPIPage: NextPageWithLayout = () => {
         <span className="text-decoration-underline"> {greeting} </span>
       </h3>
 
-      <p className="text-center py-2">
-        Look at that! A greeting stored on the NEAR blockchain.
+      <p className='pt-4 pb-2'>
+        Look at that! A greeting stored on <b>{CONTRACT}</b>.
+      </p>
+
+      <p>
+        <b> Note </b>: The contract address is being loaded from
+        an <code> env </code> variable. If you chose to add a contract during
+        the wizard, running <code> npm run deploy </code> will deploy the
+        contract code and update the <code> env </code> variable used here.
       </p>
 
       {signedIn ? greetingForm : notLoggedInWarning}

@@ -7,18 +7,12 @@ const ExampleComponentPage: NextPageWithLayout = () => {
   const components = useBosComponents();
 
   return <>
-    <p className="text-center mt-4 p-1"> This example shows the social feed of <a href="https://near.social">NEAR Social</a></p>
+    <p className="text-center mt-4 p-1"> This example shows a UI library for Near components</p>
     
     <div className="container p-2">
     <VmComponent
       key="compose"
-      src={components.social.compose}
-      props={{}}
-    />
-
-    <VmComponent
-      key="reg-feed"
-      src={components.social.feed}
+      src={components.DIG}
       props={{}}
     />
 
